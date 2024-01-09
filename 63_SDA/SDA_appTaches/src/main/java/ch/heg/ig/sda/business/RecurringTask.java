@@ -1,7 +1,5 @@
 package ch.heg.ig.sda.business;
 
-import java.time.LocalDate;
-
 /**
  * Classe en phase test représentant une tâche récurrente
  * Cette classe hérite de la classe Task
@@ -12,12 +10,12 @@ public class RecurringTask extends Task{
    /**
     * Constructeur de la classe Task.
     *
-    * @param descrption La description de la tâche
+    * @param description La description de la tâche
     * @param dayRec le jour de récurrence de la tâche
     */
-   public RecurringTask(String descrption, int dayRec){
-       super(descrption);
-      this.dayRec = dayRec;
+   public RecurringTask(String description, int dayRec){
+       super(description);
+       this.dayRec = dayRec;
    }
 
    /**
@@ -35,9 +33,5 @@ public class RecurringTask extends Task{
     @Override
     public void markAsCompleted() {
         super.markAsCompleted();
-
-        LocalDate dateDebut = LocalDate.now();
-
-        LocalDate nextRecurrence = dateDebut.plusDays(dayRec);
     }
 }

@@ -39,3 +39,14 @@ Ce projet a été réalisé dans le cadre du cours de SDA (Structure de données
 5. Suivre les instructions affichées dans la console
 6. Enjoy!
    
+# Evaluation du projet 
+Appréciation : bien
+Dans l’analyse initiale, les principes de POO sont développés, mais d’autres mécanismes (p. ex. interface) sont placés au même niveau alors qu’ils ne sont pas équivalents. Une confusion entre implémentation et héritage est constatée : L'héritage est appliqué dans le code lorsque la classe ArrayList hérite de l'interface List de la manière suivante : public class ArrayList implements List {...}
+L’application répond aux exigences. Un effort supplémentaire d’encapsulation est constaté pour la couche de présentation. Les exceptions sont bien exécutées. Il y a également une utilisation d’éléments non vus en courts (p. ex. Predicate dans removeCompletedTasks). Un plus pour la javadoc. Voici quelques points d’amélioration :
+-        Il est toutefois possible de questionner la présence d’un manager (TaskManager) lorsque la couche de service est présente.
+-        Indentation dans le constructeur RecurringTask (traité)
+-        Pertinence de markAsCompleted dans RecurringTask avec du code « mort » (traité)
+Le rapport comprend tous les éléments demandés. Les pistes à suivre sont pertinentes et appréciées. Toutefois, ne pas ajouter des limites supplémentaires lorsque ce n’est pas l’objet du travail (p. ex. portabilité).
+
+## Questions
+- 
