@@ -2,8 +2,9 @@ package ch.heg.ig.sda.service;
 
 import ch.heg.ig.sda.business.BusinessException;
 import ch.heg.ig.sda.business.Task;
-import ch.heg.ig.sda.business.TaskManager;
+//import ch.heg.ig.sda.business.TaskManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,14 +12,14 @@ import java.util.List;
  * de gestion des tâches en utilisant TaskManager
  */
 public class TaskServiceImpl implements ITaskService {
-    private final TaskManager taskManager;
+    private final List<Task> tasks;
 
     /**
      * Constructeur de la classe TaskServiceImpl
      * Initialise un gestionnaire de tâches.
      */
     public TaskServiceImpl() {
-        taskManager = new TaskManager();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -29,7 +30,7 @@ public class TaskServiceImpl implements ITaskService {
     @Override
     public final void addTask(String description) {
         Task task = new Task(description);
-        taskManager.addTask(task);
+        tasks.add(task);
     }
 
     /**
@@ -39,7 +40,7 @@ public class TaskServiceImpl implements ITaskService {
      */
     @Override
     public final List<Task> getAllTasks() {
-        return taskManager.getAllTasks();
+        return tasks;
     }
 
     /**
@@ -49,11 +50,13 @@ public class TaskServiceImpl implements ITaskService {
      */
     @Override
     public void markTaskAsCompleted(Task task) throws ServiceException {
-        try {
-            taskManager.markTaskAsCompleted(task);
-        } catch (BusinessException e) {
-            throw new ServiceException(e.getMessage(), e);
+        for (Task t : tasks) {
+            if (t.equals(task)) {
+                t.markAsCompleted();
+                return;
+            }
         }
+        throw new ServiceException("La tâche n'existe pas.");
     }
 
     /**
@@ -61,6 +64,6 @@ public class TaskServiceImpl implements ITaskService {
      */
     @Override
     public final void removeCompletedTasks() {
-        taskManager.removeCompletedTasks();
+        tasks.removeIf(Task::isCompleted);
     }
 }
